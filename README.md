@@ -14,6 +14,22 @@ pip install -r requirements.txt
 ./tcp_async_server.py
 ```
 
+# Запуск через супервизор
+```
+apt-get install supervisor
+cd /etc/supervisor/conf.d
+touch tcp_server.conf
+
+# Конфигурация супервизора
+[program:tcp_server]
+directory=/home/jocker/sites/
+command=/home/jocker/sites/env/bin/python3 tcp_async_server.py
+stderr_logfile=/var/log/tcp_server.log
+stdout_logfile=/var/log/tcp_server.log
+autostart=true
+autorestart=true
+```
+
 # структура сообщения от устройства
 - ACon_V1.0 		//заголовок
 - ID=1953			//ID устройства (у каждого свой)
